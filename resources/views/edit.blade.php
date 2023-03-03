@@ -13,11 +13,11 @@
     @csrf
     <div class="form-group">
         <label for="namaBarang">Nama Barang:</label>
-        <input type="text" class="form-control" id="namaBarang" name="namaBarang" value="{{$barangs->namaBarang}}">
+        <input type="text" class="form-control" id="namaBarang" name="judulProduk" value="{{$barangs->judulProduk}}">
     </div>
     <div class="form-group">
         <label for="deskripsiBarang">Deskripsi Barang:</label>
-        <input type="text" class="form-control" id="deskripsiBarang" name="deskripsiBarang" value="{{$barangs->deskripsiBarang}}">
+        <input type="text" class="form-control" id="deskripsiBarang" name="deskripsi" value="{{$barangs->deskripsi}}">
     </div>
     <div class="form-group">
         <label for="harga">Harga:</label>

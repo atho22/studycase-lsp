@@ -128,18 +128,20 @@ h1 {
     </style>
 </head>
 <body>
-<form action="/simpan" method="post">
+<form action="/simpan" method="post" enctype="multipart/form-data">
     @csrf
     <div class="container">
   <div class="brand-logo"></div>
   <div class="brand-title">TAMBAH PRODUCT</div>
   <div class="inputs">
     <label>namaBarang</label>
-    <input type="text" placeholder="example@test.com" id='namaBarang' name='namaBarang' />
+    <input type="text" placeholder="produk" id='namaBarang' name='judulProduk' />
     <label>deskripsiBarang</label>
-    <input type="text" placeholder="Min 6 charaters long" id='deskripsiBarang' name='deskripsiBarang'/>
+    <input type="text" placeholder="Min 6 charaters long" id='deskripsiBarang' name='deskripsi'/>
     <label>harga</label>
     <input type="text" placeholder="Min 6 charaters long" id='harga' name='harga'/>
+    <input type="file" name="gambar">
+    
     <button type="submit" class="btn btn-primary">Submit</button>
   </div>
 </div>

@@ -7,6 +7,12 @@ use App\Models\Barang;
 
 class BarangContol extends Controller
 {
+    public function count()
+    {
+        $count = Barang::count();
+
+    
+    }
     public function create()
     {
        return view('barang');
@@ -15,13 +21,26 @@ class BarangContol extends Controller
     public function store(Request $request)
     {
         
+        $request->validate([
+            'judulProduk' => 'required',
+            'deskripsi' => 'required',
+            'harga' => 'required',
+            'gambar' => 'required|image|max:2048',
+        ]);
+
+        // Simpan gambar
+        $gambarPath = $request->file('gambar')->store('public/images');
+
+        // Buat produk baru
         $barang = new Barang;
-        $barang->namaBarang = $request->namaBarang;
-        $barang->deskripsiBarang = $request->deskripsiBarang;
-        $barang->harga = $request->harga;
+        $barang->judulProduk = $request->input('judulProduk');
+        $barang->deskripsi = $request->input('deskripsi');
+        $barang->harga = $request->input('harga');
+        $barang->gambar = $gambarPath;
         $barang->save();
-        return view('index', compact(['barang']));
-    
+
+        // Redirect ke halaman daftar produk
+        return redirect('index');
 }
 
     public function edit($id)
@@ -34,8 +53,8 @@ class BarangContol extends Controller
 public function update(Request $request, $id)
 {
     $barangs = Barang::find($id);
-    $barangs->namaBarang = $request->namaBarang;
-    $barangs->deskripsiBarang = $request->deskripsiBarang;
+    $barangs->judulProduk = $request->judulProduk;
+    $barangs->deskripsi = $request->deskripsi;
     $barangs->harga = $request->harga;
     $barangs->save();
     return redirect('index');
